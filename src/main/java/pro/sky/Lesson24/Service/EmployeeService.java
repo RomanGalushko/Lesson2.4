@@ -2,11 +2,13 @@ package pro.sky.Lesson24.Service;
 
 import pro.sky.Lesson24.Data.Employee;
 
+import java.util.List;
+
 public interface EmployeeService {
 
-    Employee addEmployee(String firstName, String lastName);
-    Employee removeEmployee(String firstName, String lastName);
+    boolean addEmployee(String firstName, String lastName);
+    boolean removeEmployee(String firstName, String lastName);
     Employee findEmployee(String firstName, String lastName);
-
-    Employee[] allEmployee();
+    List<Employee> allEmployee();
+    boolean employeeCompare(String firstName, String lastName);
 }

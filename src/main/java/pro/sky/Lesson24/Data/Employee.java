@@ -1,14 +1,11 @@
 package pro.sky.Lesson24.Data;
 
-
 import java.util.Objects;
 
 public class Employee {
 
     private final String firstName;
     private final String lastName;
-
-
 
     public Employee(String fullName, String lastName) {
         this.firstName = fullName;
@@ -22,7 +19,6 @@ public class Employee {
     public String getLastName() {
         return lastName;
     }
-
 
     @Override
     public boolean equals(Object o) {

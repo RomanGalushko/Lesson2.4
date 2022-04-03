@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pro.sky.Lesson24.Data.Employee;
 import pro.sky.Lesson24.Service.EmployeeService;
 
+import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -18,16 +19,17 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public Employee[] allEmloyee() {
+    public List<Employee> allEmloyee() {
         return employeeService.allEmployee();
     }
+
     @GetMapping("/add")
-    public Employee addEmployeeToList(@RequestParam String firstName, @RequestParam String lastName) {
+    public boolean addEmployeeToList(@RequestParam String firstName, @RequestParam String lastName) {
         return employeeService.addEmployee(firstName, lastName);
     }
 
     @GetMapping("/remove")
-    public Employee removeEmployeeFromList(@RequestParam String firstName, @RequestParam String lastName) {
+    public boolean removeEmployeeFromList(@RequestParam String firstName, @RequestParam String lastName) {
         return employeeService.removeEmployee(firstName, lastName);
     }
 
