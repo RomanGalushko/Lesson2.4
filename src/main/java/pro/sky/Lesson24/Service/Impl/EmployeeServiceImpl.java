@@ -43,7 +43,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employees;
     }
 
-    @Override
     public boolean employeeCompare(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
         return employees.contains(employee);

@@ -10,5 +10,4 @@ public interface EmployeeService {
     boolean removeEmployee(String firstName, String lastName);
     Employee findEmployee(String firstName, String lastName);
     List<Employee> allEmployee();
-    boolean employeeCompare(String firstName, String lastName);
 }
