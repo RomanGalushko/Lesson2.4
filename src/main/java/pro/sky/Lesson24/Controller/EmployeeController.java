@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
-    
+
     private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
@@ -35,7 +35,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/find")
-    public Employee findEmployeeInList(@RequestParam String firstName, @RequestParam String lastName) {
+    public boolean findEmployeeInList(@RequestParam String firstName, @RequestParam String lastName) {
         return employeeService.findEmployee(firstName, lastName);
     }
 }
