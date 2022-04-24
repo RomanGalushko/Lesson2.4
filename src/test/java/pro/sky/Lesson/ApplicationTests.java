@@ -1,4 +1,4 @@
-package pro.sky.Lesson24;
+package pro.sky.Lesson;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,18 +1,22 @@
-package pro.sky.Lesson24.Service.Impl;
+package pro.sky.Lesson.Service.Impl;
 
 import org.springframework.stereotype.Service;
-import pro.sky.Lesson24.Data.Employee;
-import pro.sky.Lesson24.Exception.ThereEmployeeException;
-import pro.sky.Lesson24.Exception.ThereNoEmployeeException;
-import pro.sky.Lesson24.Service.EmployeeService;
+import pro.sky.Lesson.Data.Employee;
+import pro.sky.Lesson.Exception.ThereEmployeeException;
+import pro.sky.Lesson.Exception.ThereNoEmployeeException;
+import pro.sky.Lesson.Exception.InvalidNameException;
+import pro.sky.Lesson.Service.EmployeeService;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static org.apache.commons.lang3.StringUtils.capitalize;
+import static org.apache.commons.lang3.StringUtils.isAlpha;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    Map<String, Employee> employees = new HashMap<>();
+    private final Map<String, Employee> employees = new HashMap<>();
 
     @Override
     public boolean addEmployee(String firstName, String lastName, Integer departmentId, Integer salary) {
@@ -20,7 +24,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employees.containsKey(fullName)) {
             throw new ThereEmployeeException("есть сотрудник");
         }
-        employees.put(fullName, new Employee(firstName, lastName, departmentId, salary));
+        if (!isAlpha(fullName)) {
+            throw new InvalidNameException(fullName);
+        }
+        employees.put(fullName, new Employee(capitalize(firstName), capitalize(lastName), departmentId, salary));
         return true;
     }
 

@@ -1,6 +1,6 @@
-package pro.sky.Lesson24.Service;
+package pro.sky.Lesson.Service;
 
-import pro.sky.Lesson24.Data.Employee;
+import pro.sky.Lesson.Data.Employee;
 
 import java.util.List;
 
