@@ -8,14 +8,16 @@
 		<version>2.6.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>pro.sky</groupId>
-	<artifactId>Lesson2.4</artifactId>
+	<artifactId>Lesson</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Lesson2.4</name>
+	<name>Lesson</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -27,12 +29,19 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
+
+		<dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.12.0</version>
+		</dependency>
     </dependencies>
 
 	<build>
@@ -51,5 +60,4 @@
             </plugin>
         </plugins>
 	</build>
-
 </project>

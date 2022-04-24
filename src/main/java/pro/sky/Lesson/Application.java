@@ -1,4 +1,4 @@
-package pro.sky.Lesson24;
+package pro.sky.Lesson;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

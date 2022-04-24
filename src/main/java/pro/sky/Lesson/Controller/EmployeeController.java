@@ -1,12 +1,13 @@
-package pro.sky.Lesson24.Controller;
+package pro.sky.Lesson.Controller;
 
 import org.springframework.web.bind.annotation.*;
-import pro.sky.Lesson24.Data.Employee;
-import pro.sky.Lesson24.Service.EmployeeService;
+import pro.sky.Lesson.Data.Employee;
+import pro.sky.Lesson.Service.EmployeeService;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/employee")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -15,23 +16,23 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/employee/all")
+    @GetMapping("/all")
     public List<Employee> allEmloyee() {
         return employeeService.allEmployee();
     }
 
-    @GetMapping("/employee/add")
+    @GetMapping("/add")
     public boolean addEmployeeToList(@RequestParam String firstName, @RequestParam String lastName,
                                      @RequestParam Integer departmentId, @RequestParam Integer salary) {
         return employeeService.addEmployee(firstName, lastName, departmentId, salary);
     }
 
-    @GetMapping("/employee/remove")
+    @GetMapping("/remove")
     public boolean removeEmployeeFromList(@RequestParam String firstName, @RequestParam String lastName) {
         return employeeService.removeEmployee(firstName, lastName);
     }
 
-    @GetMapping("/employee/find")
+    @GetMapping("/find")
     public boolean findEmployeeInList(@RequestParam String firstName, @RequestParam String lastName) {
         return employeeService.findEmployee(firstName, lastName);
     }
