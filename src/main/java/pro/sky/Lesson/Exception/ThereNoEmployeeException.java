@@ -8,4 +8,8 @@ public class ThereNoEmployeeException extends RuntimeException {
     public ThereNoEmployeeException(String message) {
         super(message);
     }
+
+    public ThereNoEmployeeException() {
+        super();
+    }
 }

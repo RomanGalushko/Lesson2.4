@@ -8,4 +8,8 @@ public class InvalidNameException extends IllegalArgumentException {
     public InvalidNameException(String fullName) {
         super(fullName);
     }
+
+    public InvalidNameException() {
+        super();
+    }
 }

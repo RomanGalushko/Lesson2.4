@@ -2,7 +2,8 @@ package pro.sky.Lesson.Controller;
 
 import org.springframework.web.bind.annotation.*;
 import pro.sky.Lesson.Data.Employee;
-import pro.sky.Lesson.Service.EmployeeService;
+import pro.sky.Lesson.Service.DepartmentService;
+import pro.sky.Lesson.Service.Impl.DepartmentServiceImpl;
 
 import java.util.List;
 
@@ -10,51 +11,49 @@ import java.util.List;
 @RequestMapping("/employee")
 public class EmployeeController {
 
-    private final EmployeeService employeeService;
+    private final DepartmentService departmentService;
 
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public EmployeeController(DepartmentService departmentService) {
+        this.departmentService = departmentService;
     }
 
     @GetMapping("/all")
     public List<Employee> allEmloyee() {
-        return employeeService.allEmployee();
+        return departmentService.allEmployee();
     }
 
     @GetMapping("/add")
-    public boolean addEmployeeToList(@RequestParam String firstName, @RequestParam String lastName,
+    public Employee addEmployeeToList(@RequestParam String firstName, @RequestParam String lastName,
                                      @RequestParam Integer departmentId, @RequestParam Integer salary) {
-        return employeeService.addEmployee(firstName, lastName, departmentId, salary);
+        return departmentService.addEmployee(firstName, lastName, departmentId, salary);
     }
 
     @GetMapping("/remove")
-    public boolean removeEmployeeFromList(@RequestParam String firstName, @RequestParam String lastName) {
-        return employeeService.removeEmployee(firstName, lastName);
+    public Employee removeEmployeeFromList(@RequestParam String firstName, @RequestParam String lastName) {
+        return departmentService.removeEmployee(firstName, lastName);
     }
 
     @GetMapping("/find")
-    public boolean findEmployeeInList(@RequestParam String firstName, @RequestParam String lastName) {
-        return employeeService.findEmployee(firstName, lastName);
+    public Employee findEmployeeInList(@RequestParam String firstName, @RequestParam String lastName) {
+        return departmentService.findEmployee(firstName, lastName);
     }
 
     @GetMapping("/departments/max-salary")
     public List<Employee> employeeMaxSalaryList(@RequestParam Integer departmentId) {
-        return employeeService.employeeMaxSalary(departmentId);
+        return departmentService.employeeMaxSalary(departmentId);
     }
 
     @GetMapping("/departments/min-salary")
     public List<Employee> employeeMinSalaryList(@RequestParam Integer departmentId) {
-        return employeeService.employeeMinSalary(departmentId);
+        return departmentService.employeeMinSalary(departmentId);
     }
-
-// не могу понять как реализовать возврат всех сотрудников отдела через URL /departments/all?departmentId=5
 
     @GetMapping(value = {"/departments/all", "/departments/all/{departmentId}"})
     public List<Employee> employeeAllDepartmentIdList(@PathVariable(required = false) String departmentId) {
         if (departmentId != null) {
-            return employeeService.employeeAllDepartmentId(Integer.valueOf(departmentId));
+            return departmentService.employeeAllDepartmentId(Integer.valueOf(departmentId));
         } else {
-            return employeeService.allEmployeeByDepartments();
+            return departmentService.allEmployeeByDepartments();
         }
     }
 }

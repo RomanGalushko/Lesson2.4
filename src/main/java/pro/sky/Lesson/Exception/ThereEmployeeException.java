@@ -8,4 +8,8 @@ public class ThereEmployeeException extends RuntimeException {
     public ThereEmployeeException(String message) {
         super(message);
     }
+
+    public ThereEmployeeException() {
+        super();
+    }
 }
