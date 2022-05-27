@@ -1,5 +1,6 @@
 package pro.sky.Lesson.Service.Impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pro.sky.Lesson.Data.Employee;
 import pro.sky.Lesson.Exception.ThereEmployeeException;
@@ -19,7 +20,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final Map<String, Employee> employees = new HashMap<>();
 
     @Override
-    public boolean addEmployee(String firstName, String lastName, Integer departmentId, Integer salary) {
+    public Employee addEmployee(String firstName, String lastName,
+                                Integer departmentId, Integer salary) {
         String fullName = firstName + lastName;
         if (employees.containsKey(fullName)) {
             throw new ThereEmployeeException("есть сотрудник");
@@ -28,24 +30,25 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new InvalidNameException(fullName);
         }
         employees.put(fullName, new Employee(capitalize(firstName), capitalize(lastName), departmentId, salary));
-        return true;
+        return employees.get(fullName);
     }
 
     @Override
-    public boolean removeEmployee(String firstName, String lastName) {
+    public Employee removeEmployee(String firstName, String lastName) {
         String fullName = firstName + lastName;
+        Employee employee = employees.get(fullName);
         if (employees.containsKey(fullName)) {
             employees.remove(fullName);
-            return true;
+            return employee;
         }
         throw new ThereNoEmployeeException("сотрудник не найден");
     }
 
     @Override
-    public boolean findEmployee(String firstName, String lastName) {
+    public Employee findEmployee(String firstName, String lastName) {
         String fullName = firstName + lastName;
         if (employees.containsKey(fullName)) {
-            return true;
+            return employees.get(fullName);
         }
         throw new ThereNoEmployeeException("сотрудник не найден");
     }
@@ -91,5 +94,26 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employees.values().stream()
                 .sorted(Comparator.comparing(Employee::getDepartmentId))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void checkInvalidNameException(String firstName, String lastName) {
+        if ((!StringUtils.isAlpha(firstName)) || (!StringUtils.isAlpha(lastName))) {
+            throw new InvalidNameException();
+        }
+    }
+
+    @Override
+    public void checkThereEmployeeException(Map<String, Employee> Employee, String fullName) {
+        if (employees.containsKey(fullName)) {
+            throw new ThereEmployeeException();
+        }
+    }
+
+    @Override
+    public void checkEmployeeNotFoundException(Map<String, Employee> Employee, String fullName) {
+        if (!employees.containsKey(fullName)) {
+            throw new ThereNoEmployeeException();
+        }
     }
 }

@@ -3,9 +3,8 @@ package pro.sky.Lesson.Service;
 import pro.sky.Lesson.Data.Employee;
 
 import java.util.List;
-import java.util.Map;
 
-public interface EmployeeService {
+public interface DepartmentService {
 
     Employee addEmployee(String firstName, String lastName,
                          Integer departmentId, Integer salary);
@@ -23,10 +22,4 @@ public interface EmployeeService {
     List<Employee> employeeAllDepartmentId(Integer departmentId);
 
     List<Employee> allEmployeeByDepartments();
-
-    void checkInvalidNameException(String lastName, String wrongFirstname);
-
-    void checkThereEmployeeException(Map<String, Employee> Employee, String fullName);
-
-    void checkEmployeeNotFoundException(Map<String, Employee> Employee, String fullName);
 }
